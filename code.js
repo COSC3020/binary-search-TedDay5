@@ -1,7 +1,7 @@
 function binarySearch(list, element) {
     let right = list.length - 1;
     let left = 0;
-    let middle = math.round(left + (right - left)/2)
+    let middle = Math.round(left + (right - left)/2)
 
     if (list[middle] == element) {
         let index = middle
