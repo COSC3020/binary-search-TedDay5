@@ -1,29 +1,27 @@
 function binarySearch(list, element) {
-    let right = list.length - 1;
-    let left = 0;
-    let middle = Math.round(left + (right - left)/2)
+    var right = list.length;
+    var left = 0;
 
-    if (list[middle] == element) {
-        let index = middle
-        while (left <= right) {
-            if (list[middle] == element) {
-                index = middle;
-                right = middle - 1;
-            } else if (element < list[middle]) {
-                right = middle - 1;
-            } else{
-                left = middle + 1;
+    while (true) {
+        if (right - left < 2) {
+            if (list[left] == element) {
+                while (list[left - 1] == element) left--;
+                return left;
             }
+            else return -1;
+        }   
+        
+        var middle = left + Math.floor((right - left)/2)
+
+        if (list[middle] > element) {
+            right = middle;
         }
-        return index
+        else if (list[middle] < element) {
+            left = middle + 1;
+        }
+        else if (list[middle] == element) {
+            while (list[middle - 1] == element) middle--;
+            return middle;
+        }
     }
-    else if (list[middle] > element) {
-        let mindex = binarySearch(list.slice(0, middle), element);
-        return mindex;
-    }
-    else if (list[middle] < element) {
-        let mindex = binarySearch(list.slice(0, right + 1), element);
-        return mindex + middle;
-    }
-    return -1;
 }
